@@ -20,7 +20,7 @@ dense_layers = [2]
 layer_sizes = [128]
 conv_layers = [1]
 
-# Create a neural network
+# Create the convolutional neural network
 for dense_layer in dense_layers:
     for layer_size in layer_sizes:
         for conv_layer in conv_layers:
@@ -31,10 +31,12 @@ for dense_layer in dense_layers:
 
             model = Sequential()
 
+            # Convolutional Layer
             model.add(Conv2D(layer_size, (3, 3), input_shape=X.shape[1:]))
             model.add(Activation('relu'))
             model.add(MaxPooling2D(pool_size=(2, 2)))
 
+            # Convolutional Layer
             for l in range(conv_layer-1):
                 model.add(Conv2D(layer_size, (3, 3)))
                 model.add(Activation('relu'))
@@ -42,11 +44,13 @@ for dense_layer in dense_layers:
 
             model.add(Flatten())
 
+            # Dense Layer
             for l in range(dense_layer):
                 model.add(Dense(32))
                 model.add(Activation('relu'))
                 model.add(Dropout(0.2))
 
+            # Output Layer
             model.add(Dense(1))
             model.add(Activation('sigmoid'))
 
