@@ -125,8 +125,8 @@ while True:
         x_test, y_test, test_files = prepare_all("image/")
         for i in range(0, len(x_test)):
             prediction = model.predict(x_test[i])
-            print("Pred:", prediction[0][0], "->", categories[1 if prediction[0][0] > 0.5 else 0], ": Correct is",
-                  y_test[i], ": Image file is", test_files[i])
+            print("Pred:", prediction[0][0], "->",
+                  categories[1 if prediction[0][0] > 0.5 else 0])
 
     # Print the face detection coordinates on the frame
     for face in faces:
