@@ -1,5 +1,4 @@
 import numpy as np
-import matplotlib.pyplot as plt
 import cv2
 import os
 import random
@@ -49,7 +48,7 @@ for features, label in training_data:
     X.append(features)
     y.append(label)
 
-# Conver X and y to a numpy array
+# Convert X and y to a numpy array
 X = np.array(X).reshape(-1, img_size, img_size, 1)
 y = np.array(y)
 

@@ -11,7 +11,6 @@ from keras.utils import np_utils
 from keras.preprocessing import image
 import pandas as pd
 import math
-import matplotlib.pyplot as plt
 
 # Use camera number one (webcam)
 cap = cv2.VideoCapture(0)
@@ -34,6 +33,9 @@ model = tf.keras.models.load_model("closed_vs_open.h5")
 
 # Start timer when face is not detected
 last_time_face_detected = time.time()
+
+# Start timer when eyes are closed
+eyes_closed = time.time()
 
 # Start timer on first blink
 first_blink = time.time()
@@ -125,8 +127,14 @@ while True:
         x_test, y_test, test_files = prepare_all("image/")
         for i in range(0, len(x_test)):
             prediction = model.predict(x_test[i])
-            print("Pred:", prediction[0][0], "->",
-                  categories[1 if prediction[0][0] > 0.5 else 0])
+            if prediction[0][0] > 0.5:
+                eyes_closed = time.time()
+
+            else:
+                if ((time.time() - eyes_closed) > 2):
+                    # playsound.playsound('alarm.mp3', True)
+                    cv2.putText(frame, "Eyes Closed", (200, 120),
+                                font, 1.2, (0, 0, 255))
 
     # Print the face detection coordinates on the frame
     for face in faces:
@@ -157,10 +165,10 @@ while True:
     # Start timer on first blink
     if blink > 0:
         # If the value of "blink" is grater than 20 after 1 minute: print "You are tired"
-        if ((time.time() - first_blink) > 60):
-            if blink > 20:
+        if ((time.time() - first_blink) > 5):
+            if blink > 2:
                 cv2.putText(frame, "You are tired",
-                            (190, 240), font, 1.2, (0, 0, 255))
+                            (190, 185), font, 1.2, (0, 0, 255))
 
             # Else, restart the timer and set "blink" value to 0
             else:

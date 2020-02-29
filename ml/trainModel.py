@@ -3,7 +3,6 @@ from tensorflow.keras.models import Sequential
 from tensorflow.keras.layers import Dense, Dropout, Activation, Flatten, Conv2D, MaxPooling2D
 from tensorflow.keras.callbacks import TensorBoard
 import cv2
-import matplotlib.pyplot as plt
 import pickle
 import numpy as np
 import time

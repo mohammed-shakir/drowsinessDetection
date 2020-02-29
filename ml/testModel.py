@@ -7,7 +7,6 @@ import numpy as np
 from keras.preprocessing import image
 import pandas as pd
 import math
-import matplotlib.pyplot as plt
 import time
 
 cap = cv2.VideoCapture(0)
@@ -57,8 +56,7 @@ while True:
     x_test, y_test, test_files = prepare_all("image/")
     for i in range(0, len(x_test)):
         prediction = model.predict(x_test[i])
-        print("Pred:", prediction[0][0], "->", categories[1 if prediction[0][0] > 0.5 else 0], ": Correct is",
-              y_test[i], ": Image file is", test_files[i])
+        print(categories[1 if prediction[0][0] > 0.5 else 0])
 
 cap.release()
 cv2.destroyAllWindows()
