@@ -41,6 +41,7 @@ for dense_layer in dense_layers:
                 model.add(Activation('relu'))
                 model.add(MaxPooling2D(pool_size=(2, 2)))
 
+            # Flatten the data
             model.add(Flatten())
 
             # Dense Layer
@@ -53,6 +54,7 @@ for dense_layer in dense_layers:
             model.add(Dense(1))
             model.add(Activation('sigmoid'))
 
+            # Compile
             model.compile(loss='binary_crossentropy',
                           optimizer='adam', metrics=['accuracy'])
 

@@ -165,8 +165,8 @@ while True:
     # Start timer on first blink
     if blink > 0:
         # If the value of "blink" is grater than 20 after 1 minute: print "You are tired"
-        if ((time.time() - first_blink) > 5):
-            if blink > 2:
+        if ((time.time() - first_blink) > 60):
+            if blink > 20:
                 cv2.putText(frame, "You are tired",
                             (190, 185), font, 1.2, (0, 0, 255))
 
