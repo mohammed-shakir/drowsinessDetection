@@ -15,8 +15,8 @@ y = pickle.load(open("y.pickle", "rb"))
 X = X/255.0
 
 # Layers
-dense_layers = [2]
-layer_sizes = [128]
+dense_layers = [1]
+layer_sizes = [64]
 conv_layers = [1]
 
 # Create the convolutional neural network
