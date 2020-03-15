@@ -1,13 +1,7 @@
 import cv2
 import tensorflow as tf
 import os
-from skimage.transform import resize
-from keras.utils import np_utils
-import numpy as np
-from keras.preprocessing import image
-import pandas as pd
 import math
-import time
 
 cap = cv2.VideoCapture(0)
 frameRate = cap.get(2)

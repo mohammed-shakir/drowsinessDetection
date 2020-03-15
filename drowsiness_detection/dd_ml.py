@@ -1,21 +1,15 @@
 import cv2
-import numpy as np
 import dlib
 import time
 from math import hypot
 import playsound
 import tensorflow as tf
 import os
-from skimage.transform import resize
-from keras.utils import np_utils
-from keras.preprocessing import image
-import pandas as pd
 import math
 
 # Use camera number one (webcam)
 cap = cv2.VideoCapture(0)
 
-# Libraries
 detector = dlib.get_frontal_face_detector()
 predictor = dlib.shape_predictor("shape_predictor_68_face_landmarks.dat")
 
@@ -71,7 +65,7 @@ def midpoint(p1, p2):
 
 def get_eye_ratio(eye_points, facial_landmarks):
 
-    # Print facial landmarks on frame
+    # Get facial landmarks
     left_point = (facial_landmarks.part(
         eye_points[0]).x, facial_landmarks.part(eye_points[0]).y)
     right_point = (facial_landmarks.part(
@@ -85,7 +79,7 @@ def get_eye_ratio(eye_points, facial_landmarks):
     cv2.line(frame, left_point, right_point, (0, 255, 0), 2)  # Horizontal line
     cv2.line(frame, center_top, center_bottom, (0, 255, 0), 2)  # Vertical line
 
-    # Calculating length of the lines
+    # Get length of the lines
     hor_line_lenght = hypot(
         (left_point[0] - right_point[0]), (left_point[1] - right_point[1]))
     ver_line_lenght = hypot(
@@ -95,19 +89,18 @@ def get_eye_ratio(eye_points, facial_landmarks):
 
 
 while True:
-    # Load frames from the camera
     ret, frame = cap.read()
-    # Use gray frame for better tracking
+
     gray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
 
     frameId = cap.get(1)
 
     faces = detector(gray)
 
-    # If there is no face detected for more than 2 seconds: Print "Face not detected"
+    # If there is no face detected for more than 2 seconds
     if not faces:
         if ((time.time() - last_time_face_detected) > 2):
-            # playsound.playsound('alarm.mp3', True)
+            playsound.playsound('alarm.mp3', True)
             cv2.putText(frame, "Face not detected",
                         (150, 120), font, 1.2, (0, 0, 255))
 
@@ -129,7 +122,7 @@ while True:
             prediction = model.predict(x_test[i])
             if prediction[0][0] < 0.5:
                 if ((time.time() - eyes_closed) > 2):
-                    # playsound.playsound('alarm.mp3', True)
+                    playsound.playsound('alarm.mp3', True)
                     cv2.putText(frame, "Eyes Closed", (200, 120),
                                 font, 1.2, (0, 0, 255))
 

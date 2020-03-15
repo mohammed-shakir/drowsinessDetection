@@ -17,7 +17,7 @@ X = X/255.0
 # Layers
 dense_layers = [1]
 layer_sizes = [64]
-conv_layers = [1]
+conv_layers = [2]
 
 # Create the convolutional neural network
 for dense_layer in dense_layers:
