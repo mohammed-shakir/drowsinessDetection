@@ -100,7 +100,7 @@ while True:
     # If there is no face detected for more than 2 seconds
     if not faces:
         if ((time.time() - last_time_face_detected) > 2):
-            playsound.playsound('alarm.mp3', True)
+            # playsound.playsound('alarm.mp3', True)
             cv2.putText(frame, "Face not detected",
                         (150, 120), font, 1.2, (0, 0, 255))
 
@@ -120,9 +120,10 @@ while True:
         x_test, y_test, test_files = prepare_all("image/")
         for i in range(0, len(x_test)):
             prediction = model.predict(x_test[i])
+            print(categories[1 if prediction[0][0] > 0.5 else 0])
             if prediction[0][0] < 0.5:
                 if ((time.time() - eyes_closed) > 2):
-                    playsound.playsound('alarm.mp3', True)
+                    # playsound.playsound('alarm.mp3', True)
                     cv2.putText(frame, "Eyes Closed", (200, 120),
                                 font, 1.2, (0, 0, 255))
 
