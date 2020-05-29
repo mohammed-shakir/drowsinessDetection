@@ -27,10 +27,6 @@ def prepare_all(dir):
     for file in files:
         im = prepare(dir + file)
         x_test.append(im)
-        if "closed" in file:
-            y_test.append("eyes_closed")
-        else:
-            y_test.append("eyes_open")
     return x_test, y_test, files
 
 
