@@ -62,4 +62,4 @@ for dense_layer in dense_layers:
             model.fit(X, y, batch_size=32, epochs=10, validation_split=0.1)
 
 # Save model
-model.save("closed_vs_open.h5")
+model.save("model.h5")

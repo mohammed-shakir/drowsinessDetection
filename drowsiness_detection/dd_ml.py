@@ -23,7 +23,7 @@ modelDirectory = r'C:\xampp\htdocs\github\gymnasiearbete\drowsiness_detection'
 categories = ["eyes_closed", "eyes_open"]
 
 # Load Model
-model = tf.keras.models.load_model("closed_vs_open.h5")
+model = tf.keras.models.load_model("model.h5")
 
 # Start timer when face is not detected
 last_time_face_detected = time.time()

@@ -7,8 +7,8 @@ cap = cv2.VideoCapture(0)
 frameRate = cap.get(2)
 imagesDirectory = r'C:\xampp\htdocs\github\gymnasiearbete\ml\image'
 modelDirectory = r'C:\xampp\htdocs\github\gymnasiearbete\ml'
-categories = ["eyes_closed", "eyes_open"]
-model = tf.keras.models.load_model("closed_vs_open.h5")
+categories = ["type1", "type2"]
+model = tf.keras.models.load_model("model.h5")
 
 
 def prepare(filepath):

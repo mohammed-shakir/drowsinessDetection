@@ -3,7 +3,7 @@ import tensorflow as tf
 import os
 
 # Categories
-categories = ["eyes_closed", "eyes_open"]
+categories = ["type1", "type2"]
 
 
 def prepare(filepath):
@@ -22,15 +22,11 @@ def prepare_all(dir):
     for file in files:
         im = prepare(dir + file)
         x_test.append(im)
-        if "closed" in file:
-            y_test.append("eyes_closed")
-        else:
-            y_test.append("eyes_open")
     return x_test, y_test, files
 
 
 # Load model
-model = tf.keras.models.load_model("closed_vs_open.h5")
+model = tf.keras.models.load_model("model.h5")
 
 # Test model images
 x_test, y_test, test_files = prepare_all("testImages/")

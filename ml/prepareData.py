@@ -5,10 +5,10 @@ import pickle
 import random
 
 # Data
-data = "eyes"
+data = "images"
 
 # Categories
-categories = ["eyes_closed", "eyes_open"]
+categories = ["type1", "type2"]
 
 # Image size
 img_size = 50
